@@ -17,8 +17,8 @@ Route::group([
     'namespace' => 'Api',
     'prefix' => '',
     'as' => 'api',
-    'limit' => 300000,
-    'expires' => 5000
+    'limit' => 300,
+    'expires' => 5
 ], function () {
     Route::get('tools/token', 'ToolController@getToken');
     Route::group([
