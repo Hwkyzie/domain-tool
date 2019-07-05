@@ -25,7 +25,7 @@ class QQService extends BaseService
     public function check($domain, $fresh = false, $try = 1)
     {
         if ((!$intercept = Redis::get('intercept:qq:' . $domain)) || $fresh) {
-            //获取代理
+            //获取代理  $proxy为false是关闭
             $proxy = ProxyUtil::getValidProxy();
             $intercept = $this->checkViaGuanJia($domain, $proxy);
             //查询失败重试
