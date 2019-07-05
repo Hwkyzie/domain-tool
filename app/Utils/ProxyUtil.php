@@ -40,9 +40,9 @@ class ProxyUtil
             try {
                 //多次获取代理，首次获取稳定代理，后面获取优质代理
                 if (!self::$try) {
-                    $url = $proxy_pool_host . 'api/proxies/stable';
+                    $url = $proxy_pool_host . 'api/?apikey=9c84e73eabbb705ec006bab4c95db5f54417adfe&num=30&type=json&line=win&proxy_type=putong&sort=rand&model=all&protocol=http&address=&kill_address=&port=&kill_port=&today=false&abroad=1&isp=1&anonymity=';
                 } else {
-                    $url = $proxy_pool_host . 'api/proxies/premium';
+                    $url = $proxy_pool_host . 'api/?apikey=9c84e73eabbb705ec006bab4c95db5f54417adfe&num=30&type=json&line=win&proxy_type=putong&sort=rand&model=all&protocol=http&address=&kill_address=&port=&kill_port=&today=false&abroad=1&isp=1&anonymity=';
                 }
                 $client = new Client();
                 $response = $client->request('GET', $url, [
@@ -50,7 +50,7 @@ class ProxyUtil
                     'timeout' => 3,
                 ]);
                 $data = json_decode($response->getBody()->getContents(), true);
-                $proxy = $data['data']['protocol'] . '://' . $data['data']['ip'] . ':' . $data['data']['port'];
+                $proxy = 'http' . '://' . $data[0];
                 self::$try += 1;
                 return $proxy;
             } catch (\Exception $exception) {
